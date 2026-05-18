@@ -42,6 +42,24 @@ app.get("/repos", async (req, res) => {
     }
 });
 
+app.get("/repos/languages", async (req, res) => {
+    try {
+
+    } catch (error) {
+        console.error("Error fetching repository languages:", error.message);
+        res.status(500).json({ error: "Failed to fetch repository languages" });
+    }
+});
+
+app.get("/repos/activity", async (req, res) => {
+    try {
+        
+    } catch (error) {
+        console.error("Error fetching repository activity:", error.message);
+        res.status(500).json({ error: "Failed to fetch repository activity" });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const PORT = process.env.PORT || 8000;
 const app = express();
+app.use(express.static('public'));
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_USERNAME = process.env.GITHUB_USERNAME;

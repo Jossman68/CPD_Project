@@ -44,7 +44,22 @@ app.get("/repos", async (req, res) => {
 
 app.get("/repos/languages", async (req, res) => {
     try {
+        const reposResponse = await githubApi.get(`/users/${GITHUB_USERNAME}/repos`);
+        const languageCounts = {};
 
+        for (const repo of reposResponse.data) {
+            const languagesResponse = await githubApi.get(`/repos/${GITHUB_USERNAME}/${repo.name}/languages`);
+
+            for (const [language, count] of Object.entries(languagesResponse.data)) {
+                if (languageCounts[language] !== undefined) {
+                    languageCounts[language] += count;
+                } else {
+                    languageCounts[language] = count;
+                }
+            }
+        }
+
+        res.json({ languages: languageCounts });
     } catch (error) {
         console.error("Error fetching repository languages:", error.message);
         res.status(500).json({ error: "Failed to fetch repository languages" });
@@ -53,7 +68,16 @@ app.get("/repos/languages", async (req, res) => {
 
 app.get("/repos/activity", async (req, res) => {
     try {
-        
+        const reposResponse = await githubApi.get(`/users/${GITHUB_USERNAME}/events`);
+
+        const events = reposResponse.data.map(event => ({
+            type: event.type,
+            repo: event.repo.name,
+            created_at: event.created_at,
+        }));
+
+        res.json({ events });
+
     } catch (error) {
         console.error("Error fetching repository activity:", error.message);
         res.status(500).json({ error: "Failed to fetch repository activity" });

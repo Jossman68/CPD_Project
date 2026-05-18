@@ -1,10 +1,14 @@
 /* styles.css */
+
+/* Base reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body{
+
+/* Page layout */
+body {
     font-family: sans-serif;
     background: #0d0e03;
     color: #c9d1d9;
@@ -23,6 +27,7 @@ h1 {
     text-align: center;
 }
 
+/* Dashboard grid */
 #Dashboard {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -31,6 +36,7 @@ h1 {
     margin: 0 auto;
 }
 
+/* Main cards */
 .card {
     background: #5a0915;
     border: 1px solid #ae2758;
@@ -48,3 +54,56 @@ h1 {
     grid-column: 1 / -1;
 }
 
+/* Repository list */
+.repo-card {
+    padding: 14px 0;
+    border-bottom: 1px solid #ae2758;
+}
+
+.repo-card:last-child {
+    border-bottom: none;
+}
+
+.repo-name {
+    color: #58a6ff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.repo-name:hover {
+    text-decoration: underline;
+}
+
+.repo-description {
+    color: #8b949e;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.repo-meta {
+    display: block;
+    color: #8b949e;
+    font-size: 12px;
+}
+
+/* Activity list */
+.event-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #ae2758;
+    font-size: 14px;
+}
+
+.event-item:last-child {
+    border-bottom: none;
+}
+
+.event-type {
+    color: #f4edf3;
+    font-weight: 600;
+}
+
+.event-repo {
+    color: #58a6ff;
+}

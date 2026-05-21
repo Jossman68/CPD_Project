@@ -24,8 +24,10 @@ For my CPD project in COMP4060 at MQ university I decided to try build a full st
 
 3. Create a `.env` file in the project root
    Add these variables
+```bash
   - GITHUB_TOKEN=your_github_personal_access_token
   - GITHUB_USERNAME=your_github_username
+```
 
 5. Start the server
 ```bash

@@ -1,2 +1,5 @@
 .env
 node_modules/
+github_dashboard.db
+github_dashboard.db-shm
+github_dashboard.db-wal

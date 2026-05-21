@@ -38,7 +38,7 @@ app.get("/api/repos/languages", async (req, res) => {
 
 app.get("/api/repos/activity", async (req, res) => {
     try {
-        const rows = db.prepare(`SELECT * FROM events`).all();
+        const rows = db.prepare('SELECT * FROM events ORDER BY created_at DESC LIMIT 10').all();
         res.json({ events: rows });
 
     } catch (error) {

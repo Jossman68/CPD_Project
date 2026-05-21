@@ -65,3 +65,46 @@ async function loadContributions() {
 
 loadContributions();
 
+async function loadLanguages() {
+    const languageSection = document.getElementById('languages');
+
+    try {
+        const response = await fetch('/api/repos/languages');
+        const data = await response.json();
+
+        const entries = Object.entries(data.languages);
+
+        let total = 0;
+        for (const [language, bytes] of entries) {
+            total += bytes;
+        }
+
+        entries.sort((a, b) => b[1] - a[1]);
+
+        let languageHTML = '<h2>Languages Used</h2>';
+
+        entries.forEach(([language, bytes]) => {
+            const fraction = bytes / total;
+            const percentage = (fraction * 100).toFixed(1);
+            languageHTML += `
+                <div class="language-item">
+                    <div class="language-header">
+                        <span class="language-name">${language}</span>
+                        <span class="language-percent">${percentage}%</span>
+                    </div>
+                    <div class="language-bar-bg">
+                        <div class="language-bar" style="width: ${percentage}%"></div>
+                    </div>
+                </div>
+            `;
+        });
+
+        languageSection.innerHTML = languageHTML;
+
+    } catch (error) {
+        languageSection.innerHTML = '<h2>Languages Used</h2><p>Failed to load languages</p>';
+        console.error('Error:', error);
+    }
+}
+
+loadLanguages();

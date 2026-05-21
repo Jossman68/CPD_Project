@@ -4,7 +4,7 @@ async function loadRepo() {
     const repoSection = document.getElementById("repos");
 
     try {
-        const response = await fetch("/repos");
+        const response = await fetch("/api/repos");
         const data = await response.json();
 
         let repoHTML = '<h2>Repositories</h2>';
@@ -38,7 +38,7 @@ async function loadContributions() {
     const activitySection = document.getElementById('contributions');
 
     try {
-        const response = await fetch('/repos/activity');
+        const response = await fetch('/api/repos/activity');
         const data = await response.json();
 
         let activityHTML = '<h2>Recent Contributions</h2>';

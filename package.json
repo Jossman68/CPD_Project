@@ -7,7 +7,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "mpx vitest run"
+    "test": "npx vitest run"
   },
   "dependencies": {
     "axios": "^1.16.1",

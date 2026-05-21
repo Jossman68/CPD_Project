@@ -15,13 +15,12 @@ const githubApi = axios.create({
     },
 });
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
     res.json({ message: "Welcome to the GitHub API Proxy Server!", 
                 user: GITHUB_USERNAME });
 });
 
-
-app.get("/repos", async (req, res) => {
+app.get("/api/repos", async (req, res) => {
     try {
         const response = await githubApi.get(`/users/${GITHUB_USERNAME}/repos`);
 
@@ -42,7 +41,7 @@ app.get("/repos", async (req, res) => {
     }
 });
 
-app.get("/repos/languages", async (req, res) => {
+app.get("/api/repos/languages", async (req, res) => {
     try {
         const reposResponse = await githubApi.get(`/users/${GITHUB_USERNAME}/repos`);
         const languageCounts = {};
@@ -66,7 +65,7 @@ app.get("/repos/languages", async (req, res) => {
     }
 });
 
-app.get("/repos/activity", async (req, res) => {
+app.get("/api/repos/activity", async (req, res) => {
     try {
         const reposResponse = await githubApi.get(`/users/${GITHUB_USERNAME}/events`);
 

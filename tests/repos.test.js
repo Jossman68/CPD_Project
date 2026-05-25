@@ -20,6 +20,16 @@ beforeEach(() => {
     mockRun.mockReset();
 });
 
+describe('GET /api', () => {
+    it('should return a welcome message and username', async () => {
+        const response = await request(app).get('/api');
+
+        expect(response.status).toBe(200);
+        expect(response.body).toHaveProperty('message');
+        expect(response.body).toHaveProperty('user');
+    });
+});
+
 describe('GET /api/repos (mocked)', () => {
     it('should return formatted repository data', async () => {
         mockAll.mockReturnValueOnce([
@@ -110,6 +120,18 @@ describe('GET /api/repos/activity (mocked)', () => {
 
         expect(response.status).toBe(500);
         expect(response.body).toHaveProperty('error');
+    });
+});
+
+describe('GET /api/repos/activity edge cases', () => {
+    it('should return an empty array when there are no events', async () => {
+        mockAll.mockReturnValueOnce([]);
+
+        const response = await request(app).get('/api/repos/activity');
+
+        expect(response.status).toBe(200);
+        expect(response.body.events).toHaveLength(0);
+        expect(Array.isArray(response.body.events)).toBe(true);
     });
 });
 

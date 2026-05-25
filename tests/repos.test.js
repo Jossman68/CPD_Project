@@ -25,8 +25,7 @@ describe('GET /api', () => {
         const response = await request(app).get('/api');
 
         expect(response.status).toBe(200);
-        expect(response.body).toHaveProperty('message');
-        expect(response.body).toHaveProperty('user');
+        expect(response.body).toHaveProperty('message', 'Welcome to the GitHub API Proxy Server!');
     });
 });
 
